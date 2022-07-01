@@ -6,7 +6,7 @@ const path = require('path')
 
 /// multer config
 const storage = multer.diskStorage({
-     destination  :( req, res, cb) => {
+     destination  :( req, file, cb) => {
        cb(null, path.join(__dirname, '../assets/upload/'))
      }, 
      filename : (req, file, cb) => {
@@ -23,15 +23,15 @@ const studetMulter = multer({
 
 
 ///students route
-router.get('/create', showStudentsForm);
 router.get('/', getAllStudents);
 router.post('/', studetMulter, createStudents);
+router.get('/create', showStudentsForm);
 router.get('/:id', getSingleStudent);
 router.get('/delete/:id', deleteStudent);
 
 
 router.get('/edit/:id', showEditStudentForm);
-router.post('/:id', studetMulter,  editStudent);
+router.post('/edit/:id', studetMulter,  editStudent);
 
 // editStudent
 

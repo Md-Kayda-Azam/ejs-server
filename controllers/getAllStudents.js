@@ -19,7 +19,7 @@ const getAllStudents = async (req, res) => {
 
 /**
  * 
- * @desc Get All students data
+ * @desc Get single students data
  * @name  Get /studdents/
  * @access public
  */
@@ -36,8 +36,8 @@ const getAllStudents = async (req, res) => {
 
 /**
  * 
- * @desc Get All students data
- * @name  Get /studdents/
+ * @desc Show students data
+ * @name show /studdents/
  * @access public
  */
 const showStudentsForm = (req, res) => {
@@ -48,8 +48,8 @@ const showStudentsForm = (req, res) => {
 
 /**
  * 
- * @desc Get All students data
- * @name  Get /studdents/
+ * @desc Create students data
+ * @name  POST /studdents/
  * @access public
  */
 const createStudents = (req, res) => {
@@ -81,7 +81,11 @@ const deleteStudent = async (req, res) => {
 
 }
 
-
+/**
+ * showEditStudentForm
+ * @param {*} req 
+ * @param {*} res 
+ */
 const showEditStudentForm = async (req, res) => {
 
  let update = await student.findById( req.params.id );
@@ -93,12 +97,21 @@ const showEditStudentForm = async (req, res) => {
 
 }
 
+/**
+ * Edit single student Data
+ * @param {*} req 
+ * @param {*} res 
+ */
 const editStudent = async  (req, res) => {
-
 let id = req.params.id;
 
+let newphoto = req.body.old_photo;
+
+if(req.file){
+  newphoto = req.file.newphoto;
+}
 await student.findByIdAndUpdate(id, { ...req.body,
-photo : req.file.filename},{
+photo : newphoto},{
   new : true
 })
 

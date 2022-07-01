@@ -11,22 +11,27 @@
                     <div class="card-body">
                         <h2>Add new Student</h2>
                         <hr>
-                        <form action="/student" method="POST"  enctype="multipart/form-data">
+                        <form action="/student/edit/<%= update.id %>" method="POST"  enctype="multipart/form-data">
                             <div class="my-3">
                                 <label for="">Name</label>
-                                <input name="name" type="text" value=" <%= update.name %> " class="form-control">
+                                <input name="name" type="text" value="<%= update.name %>" class="form-control">
                             </div>
                             <div class="my-3">
                                 <label for="">Email</label>
-                                <input name="email" type="text" value=" <%= update.email %> "  class="form-control">
+                                <input name="email" type="text" value="<%= update.email %>" class="form-control">
                             </div>
                             <div class="my-3">
                                 <label for="">Cell</label>
-                                <input name="cell" type="text" value=" <%= update.cell %> "  class="form-control">
+                                <input name="cell" type="text" value="<%= update.cell %>" class="form-control">
                             </div>
                             <div class="my-3">
                                 <label for="">Photo</label>
-                                <input name="photo" value=" <%= update.photo %> "  type="file" class="">
+                                <input name="old_photo" value="<%= update.photo %>"  type="text" class="form-control">
+                                <img style="width:100px" src="/assets/upload/<%= update.photo %>" alt="">
+                            </div>
+                            <div class="my-3">
+                                <label for="">Photo</label>
+                                <input name="photo" value="<%= update.photo %>"  type="file" class="form-control">
                             </div>
                             <div class="my-3">
                                 <input type="submit" class="btn btn-primary">
